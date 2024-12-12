@@ -6,21 +6,21 @@
     <title>Platform Product Recommendation AI</title>
     <style>
         body {
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
+            background: linear-gradient(to right, #008080, #20B2AA);
         }
 
         .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             width: 500px;
         }
 
@@ -28,38 +28,38 @@
             text-align: center;
             margin-bottom: 25px;
             font-size: 24px;
-            color: #333;
+            color: #333333;
         }
 
         .container label {
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
-            color: #555;
+            color: #333333;
         }
 
         .container input, .container select {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
             box-sizing: border-box;
         }
 
         .addbutton {
             width: 100%;
             padding: 12px;
-            background-color: #007BFF;
-            color: #fff;
+            background-color: #008080;
+            color: #ffffff;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
         }
 
-        .container button:hover {
-            background-color: lightgreen;
+        .addbutton:hover {
+            background-color: #006666;
         }
 
         .selected-products {
@@ -71,7 +71,7 @@
             background-color: #e0e0e0;
             padding: 8px 12px;
             margin: 5px;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
         }
 
@@ -81,14 +81,19 @@
 
         .submit-button {
             position: absolute;
-            background-color: red;
+            background-color: #ffffff;
             bottom: 20px;
             right: 20px;
-            padding: 5px 10px; /* Smaller padding */
-            font-size: 14px; /* Smaller font size */
-            font-weight: bold; /* Make the word bold */
-            border-radius: 15px; /* Make the button curvy */
-            font-size: 14px; /* Smaller font size */
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 15px;
+            color: #20B2AA;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #d9ebe9;
         }
     </style>
 </head>
