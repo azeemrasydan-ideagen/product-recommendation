@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            height: 100vh;
+            background: linear-gradient(to right, #008080, #20B2AA);
+            box-sizing: border-box;
+        }
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+        .info-box {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: #ffffff;
+            width: 350px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: #333333;
+            display: flex;
+            align-items: center;
+        }
+        .info-box:hover {
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+        .info-box img {
+            border-radius: 50%;
+            margin-right: 15px;
+            width: 60px;
+            height: 60px;
+        }
+        .info-box h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .info-box p {
+            margin: 10px 0;
+            color: #333333;
+            line-height: 1.6;
+        }
+        .info-box p strong {
+            color: #333333;
+        }
+        .recommended-products {
+            margin-top: 150px; /* Ensure it is below the info box */
+            width: calc(100% - 40px); /* Full width minus padding */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 0 20px;
+        }
+        .recommended-products h2 {
+            grid-column: span 3;
+            font-size: 2em;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .product-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .product-box:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .product-box h3 {
+            margin-top: 0;
+            font-size: 1.6em;
+            color: #333333;
+        }
+        .product-box p {
+            color: #555555;
+            line-height: 1.6;
+        }
+        .back-button {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #20B2AA;
+            color: #ffffff;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .back-button:hover {
+            background-color: #1E9E8E;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="info-box">
+        <img src="portrait.jpg" alt="User Portrait">
+        <div>
+            <h2>User Information</h2>
+            <p><strong>Username:</strong> {{ username }}</p>
+            <p><strong>Job Title:</strong> {{ job_title }}</p>
+            <p><strong>Product Owned:</strong> {{ products }}</p>
+            <p><strong>Searches:</strong> {{ searches }}</p>
+        </div>
+    </div>
+    <div class="recommended-products">
+        <h2>Recommended Products</h2>
+        {% for product, description in recommendations.items() %}
+        <div class="product-box">
+            <h3>{{ product }}</h3>
+            <p>{{ description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="/" class="back-button">Back</a>
+</body>
+</html>
