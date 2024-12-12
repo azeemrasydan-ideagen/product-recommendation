@@ -8,7 +8,7 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px; /* Add padding to the body to ensure space around the edges */
             display: flex;
             justify-content: center;
             align-items: flex-start;
@@ -51,6 +51,7 @@
             color: #333333;
             border-bottom: 2px solid #ddd;
             padding-bottom: 10px;
+            margin-bottom: 10px;
         }
         .info-box p {
             margin: 10px 0;
@@ -61,13 +62,13 @@
             color: #333333;
         }
         .recommended-products {
-            margin-top: 200px; /* Ensure it is below the info box */
+            margin-top: 250px; /* Ensure it is below the info box */
             width: 100%;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             padding: 0 20px;
-            margin-bottom: 80px; /* Add margin to ensure space for the back button */
+            margin-bottom: 100px; /* Add margin to ensure space for the back button */
         }
         .recommended-products h2 {
             grid-column: span 3;
@@ -84,6 +85,8 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             text-align: center;
+            text-decoration: none; /* Remove underline from link */
+            color: inherit; /* Inherit text color */
         }
         .product-box:hover {
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -99,7 +102,8 @@
         }
         .back-button {
             position: absolute;
-            bottom: 20px;
+            bottom: 5px;
+            top: auto;
             right: 20px;
             padding: 10px 20px;
             background-color: #20B2AA;
@@ -129,11 +133,11 @@
     </div>
     <div class="recommended-products">
         <h2>Recommended Products</h2>
-        {% for product, description in recommendations.items() %}
-        <div class="product-box">
+        {% for product, details in recommendations.items() %}
+        <a href="{{ details.url }}" target="_blank" class="product-box">
             <h3>{{ product }}</h3>
-            <p>{{ description }}</p>
-        </div>
+            <p>{{ details.description }}</p>
+        </a>
         {% endfor %}
     </div>
     <a href="/" class="back-button">Back</a>
