@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Product Recommendation AI</title>
+    <style>
+        body {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+
+        .container h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .container input, .container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .addbutton {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .container button:hover {
+            background-color: lightgreen;
+        }
+
+        .selected-products {
+            margin-top: 15px;
+        }
+
+        .selected-products span {
+            display: inline-block;
+            background-color: #e0e0e0;
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .selected-products span:hover {
+            background-color: #c0c0c0;
+        }
+
+        .submit-button {
+            position: absolute;
+            background-color: red;
+            bottom: 20px;
+            right: 20px;
+            padding: 5px 10px; /* Smaller padding */
+            font-size: 14px; /* Smaller font size */
+            font-weight: bold; /* Make the word bold */
+            border-radius: 15px; /* Make the button curvy */
+            font-size: 14px; /* Smaller font size */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Platform Product Recommendation AI</h1>
+        <form id="product-form" method="POST" action="/result_page">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="job-title">Job Title(s)</label>
+            <input type="text" id="job-title" name="job-title" required>
+
+            <label for="searches">Searches</label>
+            <input type="text" id="searches" name="searches" required>
+            
+            <label for="products">Product(s) I Own</label>
+            <select id="products" name="products">
+                <option value="auditanalytics">Audit Analytics</option>
+                <option value="compliancepath">Compliance Path</option>
+                <option value="complispace">CompliSpace</option>
+                <option value="coruson">Coruson</option>
+                <option value="devonway">DevonWay</option>
+                <option value="huddle">Huddle</option>
+                <option value="ideagenacademy">Ideagen Academy</option>
+                <option value="ideagenEHS">Ideagen EHS</option>
+                <option value="ideagenmailmanager">Ideagen Mail Manager</option>
+                <option value="inspectionxpert">InspectionXpert</option>
+                <option value="medforce">Medforce</option>
+                <option value="opsbase">Opsbase</option>
+                <option value="opcentral">Op Central</option>
+                <option value="oneplacesolutions">OnePlace Solutions</option>
+                <option value="pentanaaudit">Pentana Audit</option>
+                <option value="pentanadisclose">Pentana Disclose</option>
+                <option value="pentanarisk">Pentana Risk</option>
+                <option value="plantassessor">Plant Assessor</option>
+                <option value="pleasereview">PleaseReview</option>
+                <option value="proquis">Proquis</option>
+                <option value="processmap">ProcessMAP</option>
+                <option value="qadex">QADEX</option>
+                <option value="qualsys">Qualsys</option>
+                <option value="qualtrax">Qualtrax</option>
+                <option value="qpulseEHS">Q-Pulse EHS</option>
+                <option value="qpulselaw">Q-Pulse Law</option>
+                <option value="qpulseOSHENS">Q-Pulse OSHENS</option>
+                <option value="qpulsePM">Q-Pulse PM</option>
+                <option value="qpulseQMS">Q-Pulse QMS</option>
+                <option value="qpulserisk">Q-Pulse Risk</option>
+                <option value="qpulseSP">Q-Pulse SP</option>
+                <option value="qpulseworkrite">Q-Pulse WorkRite</option>
+                <option value="riskmanagement">Risk Management</option>
+                <option value="smartforms">Smartforms</option>
+                <option value="tritansoftware">Tritan Software</option>
+                <option value="workbench">Workbench</option>
+                <option value="ideagenworkrite">Ideagen WorkRite</option>
+            </select>
+            <button class="addbutton" type="button" id="add-product">Add Product</button>
+
+            <div class="selected-products" id="selected-products"></div>
+
+            <button type="submit" class="submit-button">GO</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('add-product').addEventListener('click', function() {
+            const select = document.getElementById('products');
+            const selectedOption = select.options[select.selectedIndex];
+            const selectedProductsDiv = document.getElementById('selected-products');
+
+            if (!Array.from(selectedProductsDiv.children).some(span => span.dataset.value === selectedOption.value)) {
+                const span = document.createElement('span');
+                span.textContent = selectedOption.text;
+                span.dataset.value = selectedOption.value;
+                span.addEventListener('click', function() {
+                    selectedProductsDiv.removeChild(span);
+                });
+                selectedProductsDiv.appendChild(span);
+            }
+        });
+
+        document.getElementById('product-form').addEventListener('submit', function(event) {
+            const selectedProducts = Array.from(document.getElementById('selected-products').children).map(span => span.dataset.value);
+            const form = event.target;
+            const formData = new FormData(form);
+            formData.append('products', selectedProducts.join(','));
+            fetch(form.action, {
+                method: form.method,
+                body: formData
+            }).then(response => {
+                if (response.redirected) {
+                    window.location.href = response.url;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
