@@ -16,6 +16,7 @@
             height: 100vh;
             background: linear-gradient(to right, #008080, #20B2AA);
             box-sizing: border-box;
+            position: relative;
         }
         *, *::before, *::after {
             box-sizing: inherit;
@@ -60,12 +61,13 @@
             color: #333333;
         }
         .recommended-products {
-            margin-top: 150px; /* Ensure it is below the info box */
-            width: calc(100% - 40px); /* Full width minus padding */
+            margin-top: 200px; /* Ensure it is below the info box */
+            width: 100%;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             padding: 0 20px;
+            margin-bottom: 80px; /* Add margin to ensure space for the back button */
         }
         .recommended-products h2 {
             grid-column: span 3;
@@ -98,7 +100,7 @@
         .back-button {
             position: absolute;
             bottom: 20px;
-            left: 20px;
+            right: 20px;
             padding: 10px 20px;
             background-color: #20B2AA;
             color: #ffffff;
@@ -116,7 +118,7 @@
 </head>
 <body>
     <div class="info-box">
-        <img src="portrait.jpg" alt="User Portrait">
+        <img src="{{ url_for('static', filename='profile.jpg') }}" alt="User Portrait">
         <div>
             <h2>User Information</h2>
             <p><strong>Username:</strong> {{ username }}</p>

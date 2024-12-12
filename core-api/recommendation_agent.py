@@ -16,10 +16,10 @@ def generate_payload(jobTitle, productUsed, searchQueries):
     return payload
 
 def recommend(payload):
-    url = "api-key"
+    url = "https://idea-gen-ai-igh.ideagendevai.com/api/idea-gen-ai-service/v2/prompts/15a57fc3-cd0c-4aac-87af-6db3ac1ee0ad"
 
     headers = {
-        'x-api-key': 'api_key',
+        'x-api-key': 'api-key',
         'productInstanceId': '987e6543-e21b-23d4-a789-426614173999',
         'tenantId': 'f97df110-f4de-492e-8849-4a6af68026b0'
     }
