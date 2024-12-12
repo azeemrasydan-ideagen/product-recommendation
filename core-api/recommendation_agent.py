@@ -15,11 +15,52 @@ def generate_payload(jobTitle, productUsed, searchQueries):
     }
     return payload
 
+def get_product_urls():
+    return {
+        "Audit Analytics": "https://www.ideagen.com/solutions/audit-and-risk/external-audit/ideagen-audit-analytics",
+        "CompliancePath": "https://www.complispace.com.au/",
+        "CompliSpace": "https://www.complispace.com.au/",
+        "Coruson": "https://www.ideagen.com/solutions/quality/coruson",
+        "DevonWay": "https://www.devonway.com/",
+        "Huddle": "https://www.ideagen.com/solutions/document-collaboration/huddle",
+        "Ideagen Academy": "https://ideagen.ideagenacademy.com/",
+        "Ideagen EHS": "https://www.ideagen.com/solutions/environmental-health-and-safety/ehs",
+        "Ideagen Mail Manager": "https://www.mailmanager.com/",
+        "InspectionXpert": "https://www.ideagen.com/solutions/quality/quality-control",
+        "Medforce": "https://www.medforcetech.com/about/interoperability/",
+        "Opsbase": "https://www.ideagen.com/solutions/environmental-health-and-safety/ehs",
+        "Op Central": "https://opcentral.com.au/",
+        "OnePlace Solutions": "https://www.oneplacesolutions.com/",
+        "Pentana Audit": "https://www.ideagen.com/solutions/audit-and-risk/internal-audit",
+        "Pentana Disclose": "https://www.ideagen.com/solutions/audit-and-risk/external-audit",
+        "Pentana Risk": "https://www.ideagen.com/solutions/audit-and-risk/risk-management",
+        "Plant Assessor": "https://www.assessor.com.au/",
+        "PleaseReview": "https://www.ideagen.com/solutions/document-collaboration/pleasereview",
+        "Proquis": "https://www.ideagen.com/solutions/quality/quality-management",
+        "ProcessMAP": "https://www.ideagen.com/solutions/environmental-health-and-safety/ehs",
+        "QADEX": "https://www.ideagen.com/solutions/quality/quality-management",
+        "Qualsys": "https://www.ideagen.com/solutions/quality/quality-management",
+        "Qualtrax": "https://www.ideagen.com/solutions/quality/quality-management",
+        "Q-Pulse EHS": "https://www.ideagen.com/solutions/environmental-health-and-safety/ehs",
+        "Q-Pulse Law": "https://www.ideagen.com/solutions/environmental-health-and-safety/ehs",
+        "Q-Pulse OSHENS": "https://www.ideagen.com/solutions/environmental-health-and-safety/ehs",
+        "Q-Pulse PM": "https://www.ideagen.com/solutions/quality/quality-control",
+        "Q-Pulse QMS": "https://www.ideagen.com/solutions/quality/quality-management",
+        "Q-Pulse Risk": "https://www.ideagen.com/solutions/quality/quality-management",
+        "Q-Pulse SP": "https://www.ideagen.com/solutions/quality/quality-control",
+        "Q-Pulse WorkRite": "https://www.ideagen.com/solutions/elearning-content/workrite",
+        "Risk Management": "https://www.ideagen.com/solutions/audit-and-risk/risk-management",
+        "Smartforms": "https://www.ideagen.com/solutions/quality/smartforms",
+        "Tritan Software": "https://www.ideagen.com/solutions/environmental-health-and-safety/maritime-safety",
+        "Workbench": "https://www.ideagen.com/solutions/quality/quality-management",
+        "Ideagen WorkRite": "https://www.ideagen.com/solutions/elearning-content/workrite"
+    }
+
 def recommend(payload):
     url = "https://idea-gen-ai-igh.ideagendevai.com/api/idea-gen-ai-service/v2/prompts/15a57fc3-cd0c-4aac-87af-6db3ac1ee0ad"
 
     headers = {
-        'x-api-key': 'api-key',
+        'x-api-key': 'api key',
         'productInstanceId': '987e6543-e21b-23d4-a789-426614173999',
         'tenantId': 'f97df110-f4de-492e-8849-4a6af68026b0'
     }
@@ -39,6 +80,9 @@ def recommend(payload):
     # Parse the JSON content inside the answer text
     products_data = json.loads(answer_text)
 
-    # Create a dictionary to store the products and their descriptions
-    products = {item["product"]: item["description"] for item in products_data}
+    # Get product URLs
+    product_urls = get_product_urls()
+
+    # Create a dictionary to store the products, their descriptions, and URLs
+    products = {item["product"]: {"description": item["description"], "url": product_urls.get(item["product"], "#")} for item in products_data}
     return products
