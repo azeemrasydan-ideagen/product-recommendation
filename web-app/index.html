@@ -107,16 +107,16 @@
         <img src="{{ url_for('static', filename='idealogo.jpg') }}" alt="Ideagen Logo" class="center-image" style="width: 150px; height: auto;">
         <h1>Platform Product Recommendation AI</h1>
         <form id="product-form" method="POST" action="/result_page">
-            <label for="username">Username</label>
+            <label for="username">Name</label>
             <input type="text" id="username" name="username" required>
             
             <label for="job-title">Job Title(s)</label>
             <input type="text" id="job-title" name="job-title" required>
 
-            <label for="searches">Searches</label>
+            <label for="searches">Search Queries</label>
             <input type="text" id="searches" name="searches" required>
             
-            <label for="products">Product(s) I Own</label>
+            <label for="products">Product Owned</label>
             <select id="products" name="products">
                 <option value="auditanalytics">Audit Analytics</option>
                 <option value="compliancepath">Compliance Path</option>
