@@ -135,6 +135,7 @@
         <h2>Recommended Products</h2>
         {% for product, details in recommendations.items() %}
         <a href="{{ details.url }}" target="_blank" class="product-box">
+            <img src="{{ url_for('static', filename='logos/' + product.replace(' ', '_') + '.svg') }}" alt="{{ product }} Logo" style="width: 35px; height: auto;">
             <h3>{{ product }}</h3>
             <p>{{ details.description }}</p>
         </a>
