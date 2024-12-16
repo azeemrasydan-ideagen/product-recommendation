@@ -9,7 +9,7 @@ def get_ideagen_products_db():
 )
     current_dir = os.getcwd()
     db_dir = os.path.join(current_dir, "db")
-    persistent_directory = os.path.join(db_dir, "ideagen_products_db")
+    persistent_directory = os.path.join(db_dir, "ideagen_products_db_v1")
     db = Chroma(persist_directory=persistent_directory, embedding_function=embeddings)
     return db
 

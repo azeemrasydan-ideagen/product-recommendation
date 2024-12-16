@@ -74,10 +74,10 @@ def get_product_urls():
     }
 
 def recommend(payload):
-    url = "https://idea-gen-ai-igh.ideagendevai.com/api/idea-gen-ai-service/v2/prompts/15a57fc3-cd0c-4aac-87af-6db3ac1ee0ad"
+    url = genai_api_url
 
     headers = {
-        'x-api-key': 'api key',
+        'x-api-key': genai_api_key,
         'productInstanceId': '987e6543-e21b-23d4-a789-426614173999',
         'tenantId': 'f97df110-f4de-492e-8849-4a6af68026b0'
     }
