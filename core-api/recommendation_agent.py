@@ -62,6 +62,7 @@ def recommend(payload):
     response = requests.post(url, headers=headers, data=payload)
 
     print(response.text)
+
     # Parse the JSON response
     response_data = json.loads(response.text)
 
@@ -74,6 +75,11 @@ def recommend(payload):
     # Parse the JSON content inside the answer text
     products_data = json.loads(answer_text)
 
+    # Get product URLs
+    product_urls = get_product_urls()
+
+    # Create a dictionary to store the products, their descriptions, and URLs
+    products = {item["product"]: {"description": item["description"], "url": product_urls.get(item["product"], "#")} for item in products_data}
     # Get product URLs
     product_urls = get_product_urls()
 
